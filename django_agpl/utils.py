@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# django-agpl -- tools to aid releasing Django projects under the AGPLv3
+# django-agpl -- tools to aid releasing Django projects under the AGPL
 # Copyright (C) 2008, 2009 Chris Lamb <chris@chris-lamb.co.uk>
 #
 # This program is free software: you can redistribute it and/or modify
