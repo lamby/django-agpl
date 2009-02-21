@@ -20,7 +20,7 @@
 setup_args = dict(
     name='django_agpl',
     packages=[
-        'build',
+        'django_agpl',
     ],
     author='Chris Lamb',
     author_email='chris@chris-lamb.co.uk',
