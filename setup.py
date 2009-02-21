@@ -17,6 +17,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
+import glob
+
+def get_files(dirs, prefix=None):
+    oldpwd = os.path.abspath(os.curdir)
+    if prefix:
+        os.chdir(prefix)
+
+    result = []
+    for dir in dirs:
+        for dirpath, dirnames, filenames in os.walk(dir):
+            for filename in filenames:
+                result.append(os.path.join(dirpath, filename))
+
+    os.chdir(oldpwd)
+    return result
+
 setup_args = dict(
     name='django_agpl',
     packages=[
@@ -24,6 +41,12 @@ setup_args = dict(
     ],
     author='Chris Lamb',
     author_email='chris@chris-lamb.co.uk',
+    package_data={
+        'django_agpl': get_files(['templates'], 'django_agpl'),
+    },
+    data_files = (
+        ('share/django_agpl', glob.glob('images/*')),
+    ),
 )
 
 try:
