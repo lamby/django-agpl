@@ -28,16 +28,19 @@ try:
 except ImportError:
     from StringIO import StringIO
 
-__all__ = ('get_file_list', 'create_tarball')
+__all__ = ('get_file_list', 'create_tarball', 'get_fileobj')
 
 def create_tarball(mode='w'):
     import tarfile
-    fileobj = StringIO()
+    fileobj = get_fileobj()
     f = tarfile.open('download', mode, fileobj)
     for location, name in get_file_list():
         f.add(location, name)
     f.close()
     return fileobj
+
+def get_fileobj():
+    return StringIO()
 
 def matches_any(name, candidates):
     for pat in candidates:

@@ -19,7 +19,7 @@
 from django.conf import settings
 
 from django_agpl.http import DownloadHttpResponse
-from django_agpl.utils import get_file_list, create_tarball
+from django_agpl.utils import get_file_list, create_tarball, get_fileobj
 
 __all__ = ('tar', 'tarbz', 'tarbz2', 'zip')
 
@@ -47,14 +47,14 @@ def tarbz2(self):
 def zip(self):
     import zipfile
 
-    fileobj = StringIO()
+    fileobj = get_fileobj()
     f = zipfile.ZipFile(fileobj, mode='w')
     for location, name in get_file_list():
         f.write(location, name)
     f.close()
+
     return DownloadHttpResponse(
         fileobj,
         extension='.zip',
         mimetype='application/x-gtar',
     )
-
