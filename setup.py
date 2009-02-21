@@ -31,4 +31,4 @@ try:
 except ImportError:
     from distutils.core import setup
 
-setup()
+setup(**setup_args)
