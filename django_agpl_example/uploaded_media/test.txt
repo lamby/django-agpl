@@ -1,0 +1,2 @@
+This directory only exists to demonstrate that it is possible to exclude
+directories from the download where they may contain inappropriate data.

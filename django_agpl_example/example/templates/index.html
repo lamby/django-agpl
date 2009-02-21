@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>django-agpl demo</title>
+<style type="text/css">
+body {
+	width: 600px;
+	text-align: justify;
+	padding: 4em;
+}
+h1 {
+	text-align: right;
+	margin-bottom: 1.5em;
+}
+h2 {
+	border-bottom: 1px solid black;
+}
+pre, .html {
+	background-color: #EEEEEE;
+	padding: 1.5em;
+}
+</style>
+</head>
+<body>
+
+<h1>django-agpl demo</h1>
+
+<h2>Project download links</h2>
+<ul>
+  <li><a href="{% url download-tar %}">Download tarball</a></li>
+  <li><a href="{% url download-targz %}">Download tar.gz</a></li>
+  <li><a href="{% url download-tarbz2 %}">Download tar.bz2</a></li>
+  <li><a href="{% url download-zip %}">Download zip</a></li>
+</ul>
+
+<h2>HTML version of the GNU AGPL version 3.0</h2>
+<p>Via <tt>&#123;% include "includes/agpl-3.0.html" %&#125;</tt></p>
+
+<div class="html">
+{% include "includes/agpl-3.0.html" %}
+</div>
+
+<h2>Plain text version of the GNU AGPL version 3.0</h2>
+<p>Via <tt>&#123;% include "includes/agpl-3.0.txt" %&#125;</tt></p>
+<pre>
+{% include "includes/agpl-3.0.txt" %}
+</pre>
+</body>
+</html>
