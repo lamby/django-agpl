@@ -43,6 +43,7 @@ setup_args = dict(
     url='https://chris-lamb.co.uk/projects/django-agpl',
     author='Chris Lamb',
     author_email='chris@chris-lamb.co.uk',
+    description="Django application to assist GNU AGPL compliance",
     package_data={
         'django_agpl': get_files(['templates'], 'django_agpl'),
     },
