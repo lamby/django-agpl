@@ -36,10 +36,11 @@ def get_files(dirs, prefix=None):
 
 setup_args = dict(
     name='django-agpl',
-    version=1,
+    version=2,
     packages=[
         'django_agpl',
     ],
+    url='https://chris-lamb.co.uk/projects/django-agpl',
     author='Chris Lamb',
     author_email='chris@chris-lamb.co.uk',
     package_data={
