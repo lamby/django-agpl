@@ -36,7 +36,7 @@ def get_files(dirs, prefix=None):
 
 setup_args = dict(
     name='django-agpl',
-    version=2,
+    version='3',
     packages=[
         'django_agpl',
     ],
