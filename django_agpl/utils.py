@@ -18,6 +18,7 @@
 
 import os
 import re
+import six
 import django_agpl
 
 from django.conf import settings
@@ -43,7 +44,7 @@ def create_tarball(mode='w'):
     return fileobj
 
 def get_fileobj():
-    return StringIO()
+    return six.BytesIO()
 
 def matches_any(name, candidates):
     for pat in candidates:

@@ -27,8 +27,10 @@ __all__ = ('DownloadHTTPResponse',)
 class DownloadHttpResponse(HttpResponse):
     def __init__(self, fileobj, *args, **kwargs):
         extension = kwargs.pop('extension', '')
+        mimetype = kwargs.pop('mimetype', '')
         super(DownloadHttpResponse, self).__init__(
             fileobj.getvalue(),
+            mimetype + ';charset=utf-8',
             *args,
             **kwargs
         )
