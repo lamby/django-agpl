@@ -26,7 +26,10 @@ from django.core.exceptions import ImproperlyConfigured
 try:
     from cStringIO import StringIO
 except ImportError:
-    from StringIO import StringIO
+    try:
+        from StringIO import StringIO
+    except ImportError:
+        from io import StringIO
 
 __all__ = ('get_file_list', 'create_tarball', 'get_fileobj')
 
