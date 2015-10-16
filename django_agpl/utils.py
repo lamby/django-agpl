@@ -47,10 +47,7 @@ def get_fileobj():
     return six.BytesIO()
 
 def matches_any(name, candidates):
-    for pat in candidates:
-        if re.search(pat, name):
-            return True
-    return False
+    return any(re.search(pat, name) for pat in candidates)
 
 def get_file_list():
     try:
@@ -78,7 +75,7 @@ def get_file_list():
         # Fallback to default exclude list for directories
         MY_EXCLUDE_DIRS = django_agpl.EXCLUDE_DIRS
 
-    for root, dirs, files in os.walk(app_root):
+    for root, dirs, files in os.walk(app_root, topdown=True):
         for filename in files:
             if matches_any(filename, MY_EXCLUDE_FILES):
                 continue
@@ -92,9 +89,4 @@ def get_file_list():
                 ),
             )
 
-        for subdir in dirs:
-            if matches_any(subdir, MY_EXCLUDE_DIRS):
-                try:
-                    dirs.remove(subdir)
-                except ValueError:
-                    pass
+        dirs[:] = [subdir for subdir in dirs if not matches_any(subdir, MY_EXCLUDE_DIRS)]
