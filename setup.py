@@ -50,6 +50,9 @@ setup_args = dict(
     data_files = (
         ('share/django_agpl', glob.glob('images/*')),
     ),
+    install_requires=(
+        'Django>=1.8',
+    ),
 )
 
 try:
