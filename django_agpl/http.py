@@ -20,7 +20,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.core.exceptions import ImproperlyConfigured
 
-from django_agpl.signals import project_downloaded
+from .signals import project_downloaded
 
 
 class DownloadHttpResponse(HttpResponse):

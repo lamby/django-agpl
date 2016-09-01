@@ -21,8 +21,8 @@ import zipfile
 
 from django.conf import settings
 
-from django_agpl.http import DownloadHttpResponse
-from django_agpl.utils import get_file_list, create_tarball
+from .http import DownloadHttpResponse
+from .utils import get_file_list, create_tarball
 
 def tar(self):
     return DownloadHttpResponse(
