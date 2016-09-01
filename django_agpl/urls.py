@@ -19,8 +19,8 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('django_agpl.views',
-   url(r'^tar$', 'tar', name='download-tar'),
-   url(r'^zip$', 'zip', name='download-zip'),
-   url(r'^targz$', 'targz', name='download-targz'),
-   url(r'^tarbz2$', 'tarbz2', name='download-tarbz2'),
+    url(r'^tar$', 'tar', name='download-tar'),
+    url(r'^zip$', 'zip', name='download-zip'),
+    url(r'^targz$', 'targz', name='download-targz'),
+    url(r'^tarbz2$', 'tarbz2', name='download-tarbz2'),
 )
