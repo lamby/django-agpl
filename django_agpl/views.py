@@ -24,8 +24,6 @@ from django.conf import settings
 from django_agpl.http import DownloadHttpResponse
 from django_agpl.utils import get_file_list, create_tarball
 
-__all__ = ('tar', 'tarbz', 'tarbz2', 'zip')
-
 def tar(self):
     return DownloadHttpResponse(
         create_tarball(),

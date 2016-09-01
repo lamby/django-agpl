@@ -25,7 +25,6 @@ import django_agpl
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
-__all__ = ('get_file_list', 'create_tarball')
 
 def create_tarball(mode='w'):
     fileobj = six.BytesIO()

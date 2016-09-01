@@ -22,7 +22,6 @@ from django.core.exceptions import ImproperlyConfigured
 
 from django_agpl.signals import project_downloaded
 
-__all__ = ('DownloadHTTPResponse',)
 
 class DownloadHttpResponse(HttpResponse):
     def __init__(self, fileobj, *args, **kwargs):
