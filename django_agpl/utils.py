@@ -21,10 +21,11 @@ import re
 import six
 import tarfile
 import zipfile
-import django_agpl
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+
+from . import app_settings
 
 
 def create_tarball(mode='w'):
@@ -58,19 +59,19 @@ def get_file_list():
         prefix = settings.AGPL_PREFIX
     except AttributeError:
         # No prefix
-        prefix = ''
+        prefix = app_settings.PREFIX
 
     try:
         MY_EXCLUDE_FILES = settings.AGPL_EXCLUDE_FILES
     except AttributeError:
         # Fallback to default exclude list for files
-        MY_EXCLUDE_FILES = django_agpl.EXCLUDE_FILES
+        MY_EXCLUDE_FILES = app_settings.EXCLUDE_FILES
 
     try:
         MY_EXCLUDE_DIRS = settings.AGPL_EXCLUDE_DIRS
     except AttributeError:
         # Fallback to default exclude list for directories
-        MY_EXCLUDE_DIRS = django_agpl.EXCLUDE_DIRS
+        MY_EXCLUDE_DIRS = app_settings.EXCLUDE_DIRS
 
     for root, dirs, files in os.walk(app_root, topdown=True):
         for filename in files:
