@@ -18,7 +18,7 @@
 
 from django.conf.urls import patterns, url
 
-from . import vies
+from . import views
 
 
 urlpatterns = patterns('django_agpl.views',
