@@ -47,6 +47,9 @@ def create_zip():
 def matches_any(name, candidates):
     return any(re.search(x, name) for x in candidates)
 
+def get_setting(val):
+    return getattr(settings, 'AGPL_{}'.format(val), getattr(app_settings, val))
+
 def get_file_list():
     try:
         app_root = settings.AGPL_ROOT
@@ -55,27 +58,13 @@ def get_file_list():
             "You must specify 'AGPL_ROOT' in your project's settings"
         )
 
-    try:
-        prefix = settings.AGPL_PREFIX
-    except AttributeError:
-        # No prefix
-        prefix = app_settings.PREFIX
-
-    try:
-        MY_EXCLUDE_FILES = settings.AGPL_EXCLUDE_FILES
-    except AttributeError:
-        # Fallback to default exclude list for files
-        MY_EXCLUDE_FILES = app_settings.EXCLUDE_FILES
-
-    try:
-        MY_EXCLUDE_DIRS = settings.AGPL_EXCLUDE_DIRS
-    except AttributeError:
-        # Fallback to default exclude list for directories
-        MY_EXCLUDE_DIRS = app_settings.EXCLUDE_DIRS
+    prefix = get_setting('PREFIX')
+    exclude_dirs = get_setting('EXCLUDE_DIRS')
+    exclude_files = get_setting('EXCLUDE_FILES')
 
     for root, dirs, files in os.walk(app_root, topdown=True):
         for filename in files:
-            if matches_any(filename, MY_EXCLUDE_FILES):
+            if matches_any(filename, exclude_files):
                 continue
 
             yield (
@@ -87,4 +76,4 @@ def get_file_list():
                 ),
             )
 
-        dirs[:] = [x for x in dirs if not matches_any(x, MY_EXCLUDE_DIRS)]
+        dirs[:] = [x for x in dirs if not matches_any(x, exclude_dirs)]
