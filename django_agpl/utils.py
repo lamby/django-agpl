@@ -25,26 +25,15 @@ import django_agpl
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
-try:
-    from cStringIO import StringIO
-except ImportError:
-    try:
-        from StringIO import StringIO
-    except ImportError:
-        from io import StringIO
-
-__all__ = ('get_file_list', 'create_tarball', 'get_fileobj')
+__all__ = ('get_file_list', 'create_tarball')
 
 def create_tarball(mode='w'):
-    fileobj = get_fileobj()
+    fileobj = six.BytesIO()
     f = tarfile.open('download', mode, fileobj)
     for location, name in get_file_list():
         f.add(location, name)
     f.close()
     return fileobj
-
-def get_fileobj():
-    return six.BytesIO()
 
 def matches_any(name, candidates):
     return any(re.search(pat, name) for pat in candidates)
