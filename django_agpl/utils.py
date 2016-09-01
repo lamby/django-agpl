@@ -44,7 +44,7 @@ def create_zip():
     return fileobj
 
 def matches_any(name, candidates):
-    return any(re.search(pat, name) for pat in candidates)
+    return any(re.search(x, name) for x in candidates)
 
 def get_file_list():
     try:
@@ -86,4 +86,4 @@ def get_file_list():
                 ),
             )
 
-        dirs[:] = [subdir for subdir in dirs if not matches_any(subdir, MY_EXCLUDE_DIRS)]
+        dirs[:] = [x for x in dirs if not matches_any(x, MY_EXCLUDE_DIRS)]
