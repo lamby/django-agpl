@@ -18,14 +18,16 @@
 
 from django.conf.urls import patterns, url
 
+from . import vies
+
 
 urlpatterns = patterns('django_agpl.views',
-    url(r'^tar$', 'tar',
+    url(r'^tar$', views.tar,
         name='download-tar'),
-    url(r'^zip$', 'zip',
+    url(r'^zip$', views.zip,
         name='download-zip'),
-    url(r'^targz$', 'targz',
+    url(r'^targz$', views.targz,
         name='download-targz'),
-    url(r'^tarbz2$', 'tarbz2',
+    url(r'^tarbz2$', views.tarbz2,
         name='download-tarbz2'),
 )
