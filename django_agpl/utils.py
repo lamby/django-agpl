@@ -19,6 +19,7 @@
 import os
 import re
 import six
+import tarfile
 import django_agpl
 
 from django.conf import settings
@@ -35,7 +36,6 @@ except ImportError:
 __all__ = ('get_file_list', 'create_tarball', 'get_fileobj')
 
 def create_tarball(mode='w'):
-    import tarfile
     fileobj = get_fileobj()
     f = tarfile.open('download', mode, fileobj)
     for location, name in get_file_list():
