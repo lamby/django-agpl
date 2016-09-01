@@ -16,13 +16,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import six
-import zipfile
-
 from django.conf import settings
 
 from .http import DownloadHttpResponse
-from .utils import get_file_list, create_tarball
+from .utils import create_tarball, create_zip
+
 
 def tar(self):
     return DownloadHttpResponse(
@@ -46,14 +44,8 @@ def tarbz2(self):
     )
 
 def zip(self):
-    fileobj = six.BytesIO()
-    f = zipfile.ZipFile(fileobj, mode='w')
-    for location, name in get_file_list():
-        f.write(location, name)
-    f.close()
-
     return DownloadHttpResponse(
-        fileobj,
+        create_zip(),
         extension='.zip',
         mimetype='application/x-gtar',
     )

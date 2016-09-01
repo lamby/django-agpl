@@ -20,6 +20,7 @@ import os
 import re
 import six
 import tarfile
+import zipfile
 import django_agpl
 
 from django.conf import settings
@@ -31,6 +32,14 @@ def create_tarball(mode='w'):
     f = tarfile.open('download', mode, fileobj)
     for location, name in get_file_list():
         f.add(location, name)
+    f.close()
+    return fileobj
+
+def create_zip():
+    fileobj = six.BytesIO()
+    f = zipfile.ZipFile(fileobj, mode='w')
+    for location, name in get_file_list():
+        f.write(location, name)
     f.close()
     return fileobj
 
