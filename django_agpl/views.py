@@ -45,5 +45,5 @@ def zip(self):
     return DownloadHttpResponse(
         create_zip(),
         extension='.zip',
-        mimetype='application/x-gtar',
+        mimetype='application/zip',
     )
